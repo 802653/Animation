@@ -2,7 +2,7 @@ var canvas;
 var ctx;
 //  intialize the Canvas and context
 window.onload = init;
-
+var score = 0;
 function init(){
   //get the canvas
   canvas = document.getElementById('canvas');
@@ -14,6 +14,7 @@ function init(){
   // get the context
   ctx = canvas.getContext('2d'); // This is the context
   animate();
+  var score = 0;
 }
 
 var x, y, dx, dy, radius;
@@ -56,6 +57,8 @@ function animate(){
               //arr[i].dy -= (speed * vCollisionNorm.y);
               //arr[j].dx += (speed * vCollisionNorm.x);
               //arr[j].dy += (speed * vCollisionNorm.y);
+			  score++;
+			  document.getElementById("p1").innerHTML = "COLLISIONS:" + score;
 
             }
   		   }
@@ -88,8 +91,8 @@ class ClassyBall{
 
 var arr = [], i;
 var num = 0;
-for(var i = 0; i < 20; i++) {
-  num = Math.random()*40
+for(var i = 0; i < 8; i++) {
+  num = Math.random()*30
 	  + 5;
   if (i == 12) {num = 100;}
   arr[i] = new ClassyBall(num);
