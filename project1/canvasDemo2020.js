@@ -7,7 +7,7 @@ function init(){
   //get the canvas
   canvas = document.getElementById('canvas');
   // Set the dimensions of the canvas
-  canvas.width = window.innerWidth/1.2;
+  canvas.width = window.innerWidth/1;
   canvas.height = window.innerHeight/2;
   canvas.style.border = 'solid black 2px';
   canvas.style.backgroundColor = 'rgba(0,24,35)';
@@ -15,6 +15,15 @@ function init(){
   ctx = canvas.getContext('2d'); // This is the context
   animate();
   var score = 0;
+  
+  this.wrapperDiv = document.getElementById("wrapperDiv");
+  this.wrapperDiv.setAttribute("style", " background-color:yellow; border: 5px solid black; width:900px; height:150px;");
+    // create tileMenuDiv
+  this.tileMenuDiv = document.createElement("div");
+  this.wrapperDiv.appendChild(this.tileMenuDiv)
+  this.tileMenuDiv.setAttribute("style", " background-color:#033c4a; width:900px; height:50px;float:left;");
+ 
+	
 }
 
 var x, y, dx, dy, radius;
