@@ -4,7 +4,7 @@ body{
  }
 #wrapperDiv{  id wrapperDiv
  height: 800px;
- width: 900px;
+ width: 100px;
  margin:auto;
  margin-top: 20px;
 }
