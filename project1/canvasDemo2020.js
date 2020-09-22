@@ -17,11 +17,11 @@ function init(){
   var score = 0;
   
   this.wrapperDiv = document.getElementById("wrapperDiv");
-  this.wrapperDiv.setAttribute("style", " background-color:yellow; border: 5px solid black; width:900px; height:200px;");
+  this.wrapperDiv.setAttribute("style", " background-color:yellow; border: 5px solid black; width:1500px; height:100px;");
     // create tileMenuDiv
   this.tileMenuDiv = document.createElement("div");
   this.wrapperDiv.appendChild(this.tileMenuDiv)
-  this.tileMenuDiv.setAttribute("style", " background-color:#033c4a; width:900px; height:100px;float:left;");
+  this.tileMenuDiv.setAttribute("style", " background-color:#033c4a; width:00px; height:50px;float:left;");
   
 
  
@@ -126,14 +126,11 @@ btn4.addEventListener("click", () => create(25), false);
 var btn5 = document.getElementById("button5");
 btn5.addEventListener("click", () => create(100), false);
 var btn6 = document.getElementById("button6");
-btn6.addEventListener("click", toggle, false);
+btn6.addEventListener("click", () => toggleCol(), false);
 
-function toggle() {
-	if(toggle == true) {
-		toggle = false;
-	}
-	if(toggle == false) {
-		toggle = true;
+function toggleCol() {
+	for(var i = 0; i < num; i++) {
+		arr.pop(i);
 	}
 }
 
