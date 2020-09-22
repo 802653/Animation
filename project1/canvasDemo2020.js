@@ -126,7 +126,7 @@ btn4.addEventListener("click", () => create(25), false);
 var btn5 = document.getElementById("button5");
 btn5.addEventListener("click", () => create(100), false);
 var btn6 = document.getElementById("button6");
-btn6.addEventListener("click", () => toggle, false);
+btn6.addEventListener("click", toggle, false);
 
 function toggle() {
 	if(toggle == true) {
