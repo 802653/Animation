@@ -15,13 +15,15 @@ JSVector.prototype.setMagnitude = function(mag){
 
 // Get the magnitude of the vector using pythagorean theorem
 JSVector.prototype.getMagnitude = function(){
-
+	reutnr(Math.sqrt(this.x*this.x+this.y*this.y));
 }
 
 // Set the angle (direction) of the vector,
 // retaining the magnitude.
 JSVector.prototype.setDirection = function(angle){
-
+	var mag = this.getMagnitude();
+	this.x = Math.cos(angle) * mag;
+	this.y = Math.sin(angle) * mag;
 }
 
 // Get the direction (angle) of the vector
@@ -34,12 +36,14 @@ JSVector.prototype.getDirection = function(){
 
 // Add another vector to this vector
 JSVector.prototype.add = function(v2){
-
+	this.x = this.x + v2.x;
+	this.y = this.y + v2.y;
 }
 
 // Subtract another vector from this vector
 JSVector.prototype.sub = function(v2){
-
+	this.x = this.x - v2.x;
+	this.y = this.y - v2.y;
 }
 
 // Class method to return a new vector that is the sum of two vectors
@@ -74,7 +78,7 @@ JSVector.prototype.limit = function(lim){
 
 // Get the distance between this vector and another one
 JSVector.prototype.distance = function(v2){
-
+	return Math.sqrt((this.x-this.x)*(this.x-this.x)+((this.y-this.y)*(this.y-this.y)));
 }
 
 // Get square of the distance between this vector and another one
