@@ -2,15 +2,17 @@
 //  Add your name here
 //  Add project name here
 // The class constructor
-function JSVector(x = 0,y = 0){
-        this.x = x;
-        this.y = y;
+function JSVector(x,y){
+    this.x = x;
+    this.y = y;
 }
 
 // Set the magnitude of the vector,
 // retaining the angle (direction).
 JSVector.prototype.setMagnitude = function(mag){
-
+	var direction = this.getDirection();
+	this.x=Math.cos(direction) * mag;
+	this.y=Math.sin(direction) * mag;
 }
 
 // Get the magnitude of the vector using pythagorean theorem
@@ -48,27 +50,29 @@ JSVector.prototype.sub = function(v2){
 
 // Class method to return a new vector that is the sum of two vectors
 JSVector.addGetNew = function(v1,v2){
-
+	return (new JSVector(v1.x+v2.x, v1.y+v2.y) );
 }
 
 // Class method to return a new vector that is the difference of two vectors
 JSVector.subGetNew = function(v1,v2){
-
+	return (new JSVector(v1.x-v2.x,v1.y-v2.y) );
 }
 
 // Multiply this vector by a scalar
 JSVector.prototype.multiply = function(scalar){
-
+	this.x = this.x*scalar;
+	this.y = this.y*scalar;
 }
 
 // Divide this vector by a scalar
 JSVector.prototype.divide = function(scalar){
-
+	this.x = this.x/scalar;
+	this.y = this.y/scalar;
 }
 
 // Normalize this vector so that it has a magnitude of 1
 JSVector.prototype.normalize = function(){
-
+	this.setMagnitude(1);
 }
 
 // Limit the magnitude of this vector
