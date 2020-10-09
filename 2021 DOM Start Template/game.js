@@ -26,8 +26,10 @@ function Game(){
         this.bubbles.push(new Bubble(x, y, dx, dy, diam, clr)); // add new bubble to array
     }
 
-	this.bubbles.push(new BubbleAttractive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,200));
-	this.bubbles.push(new BubbleRepulsive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,100));
+	this.bubbles.push(new BubbleAttractive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,50));
+
+	
+	this.bubbles.push(new BubbleRepulsive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,50));
     //  Add event handlers to all tile objects
     for(let i = 0; i < this.ga.tiles.length; i++){
         this.ga.tiles[i].addEventListener('mouseover', // mouseover is the name of an event

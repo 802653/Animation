@@ -38,6 +38,13 @@ BubbleAttractive.prototype.checkOverlapping = function(){
             let x = this.location.x-b[i].location.x
 			let y = this.location.y-b[i].location.y
 			b[i].velocity.setDirection(Math.atan2(y,x));
+			//b[i].acceleration.sub(this.acceleration);
+			//b[i].acceleration.normalize();
+			//b[i].acceleration.multiply(0.03);
+			this.attract = JSVector.subGetNew(b[i].location,this.location);
+			this.attract.normalize();
+			this.attract.multiply(0.05);
+			b[i].velocity.add(this.attract);
          }
        }
     }

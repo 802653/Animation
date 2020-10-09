@@ -5,7 +5,7 @@
 function Bubble(x, y, dx, dy, rad, clr){
 	this.location = new JSVector(x,y);
     this.velocity = new JSVector(dx,dy);
-	this.acceleration = new JSVector(Math.random()*0.01,Math.random()*0.01);
+	this.acceleration = new JSVector(0,0);
 	this.rad = rad;
 	this.clr = clr;
 	this.isOverlapping = false;
@@ -15,13 +15,12 @@ function Bubble(x, y, dx, dy, rad, clr){
 
 Bubble.prototype.run = function(){
     this.location.add(this.velocity);
-	if(this.acceleration.x > 5 || this.acceleration.y > 5) {
-		this.velocity.multiply(-1);
-	}
 	this.checkOverlapping();
 	this.update();
 	this.render();
 	this.checkEdges();
+	this.acceleration.limit(0.1);
+	this.velocity.limit(1);
 	
 }
 
@@ -65,6 +64,7 @@ Bubble.prototype.update = function(){
     //if(!game.gamePaused){
     //  this.velocity.setMagnitude(Math.random()*4-8);
     //}
+	this.velocity.add(this.acceleration);
   }
 
 // When a bubble hits an edge of the canvas, it wraps around to the opposite edge.

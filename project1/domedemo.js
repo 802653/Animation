@@ -18,3 +18,4 @@ function animate () {
 	ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
 	game.update();
 }
+

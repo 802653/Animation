@@ -40,12 +40,14 @@ JSVector.prototype.getDirection = function(){
 JSVector.prototype.add = function(v2){
 	this.x = this.x + v2.x;
 	this.y = this.y + v2.y;
+	return(this);
 }
 
 // Subtract another vector from this vector
 JSVector.prototype.sub = function(v2){
 	this.x = this.x - v2.x;
 	this.y = this.y - v2.y;
+	return(this);
 }
 
 // Class method to return a new vector that is the sum of two vectors
@@ -77,7 +79,9 @@ JSVector.prototype.normalize = function(){
 
 // Limit the magnitude of this vector
 JSVector.prototype.limit = function(lim){
-
+	if(this.getMagnitude > lim){
+		this.setMagnitude = lim;
+	}
 }
 
 // Get the distance between this vector and another one
@@ -95,20 +99,25 @@ JSVector.prototype.distanceSquared = function(v2){
 //                           |  sin   +cos  |
 
 JSVector.prototype.rotate = function(angle) {
-
+	let x = this.x, y = this.y;
+	let cos = Math.cos(angle);
+	let sin = Math.sin(angle);
+	this.x = x * cos - y * sin;
+	this.y = x * sin + y * cos;
 }
 
 // Get the angle between this vector and another one
 JSVector.prototype.angleBetween = function(v2){
-
+	return(Math.abs(this.getDirection()-v2.getDirection()));
 }
 
 // Make a copy of this vector
 JSVector.prototype.copy = function(){
-
+	return(new JSVector(this.x,this.y));
 }
 
 // Override inherited toString() to describe this instance
 JSVector.prototype.toString = function() {
+
 
 }
