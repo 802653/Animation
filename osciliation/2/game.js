@@ -11,25 +11,25 @@ function Game(){
 
     //   create the array of bubble objects
     this.bubbles = [];
-    let numBubbles = 151;
+	this.frameCount = 0;
+    let numBubbles = 137;
     for(var i = 0; i < numBubbles; i++){
         var x, y, dx, dy, diam, clr, r, g, b;
-        x = Math.random()*this.canvas.width;
-        y = Math.random()*this.canvas.height;
-        dx = Math.random()*4-2;
-        dy = Math.random()*4-2;
-        diam = 15;//Math.random()*20 + 10;
+        x = this.canvas.width-(i*8);
+        y = 200
+        dx = 1;
+        dy = 0;
+        diam = 8;
         r = 255;
         g = 255;
         b = 255;
         clr = "rgba(" + r + ", "+ g + ","+ b +")"
         this.bubbles.push(new Bubble(x, y, dx, dy, diam, clr)); // add new bubble to array
+		//this.bubbles.push(new Triangle(x+80, y+80, dx, dy, diam, clr)); // add new bubble to array
     }
 
-	this.bubbles.push(new BubbleAttractive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,50));
+	//this.bubbles.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
 
-	
-	this.bubbles.push(new BubbleRepulsive(Math.random()*this.canvas.width, Math.random()*this.canvas.height,Math.random()*2-1,Math.random()*2-1,40,clr,60));
     //  Add event handlers to all tile objects
     for(let i = 0; i < this.ga.tiles.length; i++){
         this.ga.tiles[i].addEventListener('mouseover', // mouseover is the name of an event
@@ -52,9 +52,39 @@ function Game(){
 
 // function to run the game each animation cycle
 Game.prototype.run = function(){
+  
   if(!this.gamePaused){
-    for(let i = 0; i < this.bubbles.length; i++){
-      this.bubbles[i].run();    // run each bubble
+	  
+	this.angle = 0;
+	this.angleVel = 0.1;
+	  
+	this.frameCount++;
+    //for(let i = 0; i < this.bubbles.length; i++){
+	//	for(let j = 0; j < this.bubbles.length; j++) {
+			//let forces = new JSVector(0,0);
+	//		if(i!=j) {
+				
+				//force = this.bubbles[j].gravity(this.bubbles[i])
+				//force.multiply(-1);
+				//this.bubbles[i].applyForce(force);
+				
+				//this.bubbles[j].applyForce(force);
+	//		}
+	//	}
+		    // run each bubble
+		
+		
+		
+	//  }
    }
+   for(let i=0; i <this.bubbles.length;i++) {
+		if (this.bubbles[i]!= null) {
+			this.bubbles[i].location.y = Math.sin(this.angle)*Math.cos(this.frameCount)*200 + 300 ;
+			this.bubbles[i].run();
+			this.angle += this.angleVel;
+   }
+   
   }
 }
+
+

@@ -41,11 +41,12 @@ BubbleRepulsive.prototype.checkOverlapping = function(){
 			//b[i].acceleration.sub(this.acceleration);
 			//b[i].acceleration.normalize();
 			//b[i].acceleration.multiply(0.03);
-			b[i].velocity.setDirection(b[i].location.angleBetween(this.location));
-			this.attract = JSVector.subGetNew(this.location,b[i].location);
-			this.attract.normalize();
-			this.attract.multiply(0.2);
-			b[i].velocity.add(this.attract);
+			b[i].velocity.setDirection(Math.atan2(y,x));
+			b[i].velocity.setDirection(this.location.angleBetween(b[i].location));
+			this.attract = JSVector.subGetNew(b[i].location.x,b[i].location.y);
+			//this.attract.normalize();
+			//this.attract.multiply(0.05);
+			//b[i].velocity.add(this.attract);
 			//b[i].velocity.normalize();
 			//b[i].velocity.multiply(0.05);
          }
