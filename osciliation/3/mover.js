@@ -8,13 +8,15 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 	this.acceleration = new JSVector(0,0);
 	this.rad = rad;
 	this.mass = 0.31415 * rad * rad;
-	if(this.rad < 100) {
-			this.mass = 100
-	}
 	this.clr = clr;
 	this.isOverlapping = false;
-	
 	this.f = null;
+	this.orbiters = [];
+	for (let i = 0; i < orbs; i++) {
+		let a = i * (Math.Pi*2) / numOrbs + this.orbitAngle;
+		Orbiter(this, orbiterRad, 5, angle, angleVel, this.clr)
+		
+	}
 }
 
   //  placing methods in the prototype (every Mover shares functions)
