@@ -14,7 +14,7 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 	this.orbiters = [];
 	for (let i = 0; i < orbs; i++) {
 		let a = i * (Math.Pi*2) / numOrbs + this.orbitAngle;
-		Orbiter(this, orbiterRad, 5, angle, angleVel, this.clr)
+		this.orbiters[i] = new Orbiter(this, 15, 15, a, 1, this.clr)
 		
 	}
 }
