@@ -21,7 +21,7 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 	for (let i = 0; i < orbs; i++) {
 
 		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
-	    let angleVel = orbs * 0.3;
+	    let angleVel = 3 + (orbs * 0.1);
 		this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
 		
 	}
