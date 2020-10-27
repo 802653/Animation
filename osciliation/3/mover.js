@@ -7,14 +7,22 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
     this.velocity = new JSVector(dx,dy);
 	this.acceleration = new JSVector(0,0);
 	this.rad = rad;
+
 	this.mass = 0.31415 * rad * rad;
+	if(this.rad > 40) {
+			this.mass=500;
+	}
 	this.clr = clr;
+	this.orbitAngle = Math.random() * Math.PI;
 	this.isOverlapping = false;
 	this.f = null;
+	this.orbs = orbs;
 	this.orbiters = [];
 	for (let i = 0; i < orbs; i++) {
-		let a = i * (Math.Pi*2) / numOrbs + this.orbitAngle;
-		this.orbiters[i] = new Orbiter(this, 15, 15, a, 1, this.clr)
+
+		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
+	    let angleVel = orbs * 0.3;
+		this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
 		
 	}
 }
@@ -22,15 +30,24 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
   //  placing methods in the prototype (every Mover shares functions)
 
 Mover.prototype.run = function(){
+	for (let i = 0; i < this.orbiters.length; i++) {
+
+		let orb = this.orbiters[i];
+		orb.update();
+		orb.render();
+	}
 	this.velocity.add(this.acceleration);
     this.location.add(this.velocity);
 	this.checkOverlapping();
 	this.update();
 	this.render();
 	this.checkEdges();
+	
 	this.acceleration.multiply(0);
-	this.velocity.x += -0.00002 * 2 * 3.1415 * this.rad *  this.velocity.x
-	this.velocity.y += -0.00002 * 2 * 3.1415 * this.rad * this.velocity.y
+	//drag force
+	//this.velocity.x += -0.00001 * 2 * 3.1415 * this.rad *  this.velocity.x
+	//this.velocity.y += -0.00001 * 2 * 3.1415 * this.rad * this.velocity.y
+	
 }
 
 Mover.prototype.applyForce = function(force) {
@@ -40,6 +57,21 @@ Mover.prototype.applyForce = function(force) {
 	
 }
 
+Mover.prototype.gravity = function(a) {
+	force = JSVector.subGetNew(this.location, a.location); 
+	let distance = force.getMagnitude();
+	if (distance < 20) {
+		distance = 20;
+	}
+	//if (distance > 200) {
+	//	distance = 200;
+	//}
+	//force.normalize();
+	let strength = (1 * this.mass * a.mass)/ (distance*distance);
+	force.setMagnitude(strength);
+	return force;
+	
+}
 Mover.prototype.gravity = function(a) {
 	force = JSVector.subGetNew(this.location, a.location); 
 	let distance = force.getMagnitude();
@@ -106,16 +138,15 @@ Mover.prototype.render = function(){
 
 // Move the Mover in a random direction
 Mover.prototype.update = function(){
-    //if(!game.gamePaused){
-    //  this.velocity.setMagnitude(Math.random()*4-8);
-    //}
+    if(!game.gamePaused){
+    }
   }
 
 // When a Mover hits an edge of the canvas, it wraps around to the opposite edge.
 Mover.prototype.checkEdges = function(){
     let canvas = game.canvas;
-    if(this.location.x > canvas.width)  this.velocity.multiply(-1); // wrap around from right to left
-    if(this.location.x < 0)  this.velocity.multiply(-1); // wrap around from left to right
-    if(this.location.y > canvas.height)  this.velocity.multiply(-1); // wrap around from bottom to top
-    if(this.location.y < 0)  this.velocity.multiply(-1); // wrap around from top to bottom
+    if(this.location.x > canvas.width)  this.velocity.x = this.velocity.x * -1; // wrap around from right to left
+    if(this.location.x < 0)  this.velocity.x = this.velocity.x * -1; // wrap around from left to right
+    if(this.location.y > canvas.height)  this.velocity.y = this.velocity.y * -1; // wrap around from bottom to top
+    if(this.location.y < 0)  this.velocity.y = this.velocity.y * -1; // wrap around from top to bottom
   }

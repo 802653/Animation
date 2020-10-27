@@ -11,9 +11,9 @@ function Game(){
 
     //   create the array of bubble objects
 	this.movers = [];   
-    this.numMovers = 55;
+    this.numMovers = 20;
 	this.createMovers(this.canvas,this.numMovers);
-
+	
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
 
     //  Add event handlers to all tile objects
@@ -41,10 +41,24 @@ Game.prototype.run = function(){
   if(!this.gamePaused){
 	
 		for(let i=0; i <this.movers.length;i++) {
+			for(let j=0; j<this.movers.length;j++) {
+				let forces = new JSVector(0,0);
+				if(i!=j) {
+					force = this.movers[j].gravity(this.movers[i])
+					//force.multiply(-1);
+					this.movers[i].applyForce(force);		
+				}
+			}
+			
+			
+		}
+		for(let i=0; i<this.movers.length;i++) {
 			if (this.movers[i]!= null) {
 					this.movers[i].run();
 			}
+			
 		}
+		
 	}
 }
 
@@ -54,15 +68,19 @@ Game.prototype.createMovers = function(canvas, numMovers) {
         var x, y, dx, dy, diam, clr, r, g, b;
         x = Math.random()*this.canvas.width;
         y = Math.random()*this.canvas.height;
-        dx = Math.random()*5-2.5;
-        dy = Math.random()*5-2.5;
-        diam = Math.random()*20;
+        dx = Math.random()*1-0.5;
+        dy = Math.random()*1-0.5;
+        diam = Math.random()*10;
+		if(i==1) {
+				diam =50;
+		}
         r = 255;
         g = 255;
         b = 255;
-		numOrbs = Math.floor(Math.random*5+3);
+		numOrbs = Math.random() * 3
         clr = "rgba(" + r + ", "+ g + ","+ b +")"
-        this.movers.push(new Mover(x, y, dx, dy, diam, clr, numOrbs)); // add new bubble to array
+
+        this.movers.push(new Mover(x, y, dx, dy, diam, clr,numOrbs)); // add new bubble to array
 		//this.movers.push(new Triangle(x+80, y+80, dx, dy, diam, clr)); // add new bubble to array
     }
 	
