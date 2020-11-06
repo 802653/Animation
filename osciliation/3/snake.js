@@ -4,16 +4,19 @@
 
 function Snake(mover, snakeRad, radDistance){
 	this.mover = mover;
-	this.distance = 30;
-	this.radius = 30;
+	this.distance = 50;
+	this.radius = 10;
 	this.loc = new JSVector(this.mover.x,this.mover.y);
 }
 
 Snake.prototype.update = function(){
-	this.movement = new JSVector.subGetNew(this.loc,this.mover);
+	this.movement = new JSVector.subGetNew(this.mover,this.loc);
 	//this.movement.normalize();
-	//this.movement.multiply(0.4);
-	this.loc.sub(this.movement);
+	//this.movement.setMagnitude(0.4);
+	this.movement.setMagnitude(this.distance);
+	this.loc = new JSVector.subGetNew(this.mover, this.movement);
+	
+	
 	
 	
 }

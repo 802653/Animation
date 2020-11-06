@@ -23,7 +23,7 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 
 		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
 	    let angleVel = 3 + (orbs * 0.1);
-		this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
+		//this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
 		
 	}
 	this.snakes.push( new Snake(this.location, 20, 20));
