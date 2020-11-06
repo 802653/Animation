@@ -19,14 +19,17 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 	this.orbs = orbs;
 	this.orbiters = [];
 	this.snakes = [];
+
 	for (let i = 0; i < orbs; i++) {
 
 		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
 	    let angleVel = 3 + (orbs * 0.1);
+		this.snakes.push( new Snake(this, 20, 20+this.rad));
 		//this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
+		//this.snakes.push( new Snake(this.snakes[i].loc, 20, 20));
 		
 	}
-	this.snakes.push( new Snake(this.location, 20, 20));
+	
 }
 
   //  placing methods in the prototype (every Mover shares functions)
@@ -131,12 +134,9 @@ Mover.prototype.checkOverlapping = function(){
 Mover.prototype.render = function(){
     let ctx = game.ctx;
     // color depends on whether this Mover overlaps any oher Mover
-	if(!this.isOverlapping) {
-		ctx.strokeStyle = "rgba(255,155,255,255)"//this.clr;
-	}
-	else {
-		ctx.strokeStyle = "rgba(255,155,155,255)"//this.clr;
-	}
+
+	ctx.strokeStyle = "rgba(155,155,255,255)"//this.clr;
+
     ctx.fillStyle = this.clr;
     ctx.beginPath();
 	ctx.arc(this.location.x, this.location.y, this.rad, 0, 2 * Math.PI);
