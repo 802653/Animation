@@ -11,7 +11,7 @@ function Game(){
 
     //   create the array of bubble objects
 	this.movers = [];   
-    this.numMovers = 20;
+    this.numMovers = 2;
 	this.createMovers(this.canvas,this.numMovers);
 	
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));

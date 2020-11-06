@@ -17,6 +17,7 @@ function Orbiter(mover, orbiterRad, orbitRad, angle, angleVel, clr){
 }
 
 Orbiter.prototype.update = function(){
+	
 	this.rotator.rotate(this.angleVel);
 		//console.log(this.rotator);
 	this.loc = JSVector.addGetNew(this.mover,this.rotator);
