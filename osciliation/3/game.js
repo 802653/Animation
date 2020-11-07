@@ -12,8 +12,8 @@ function Game(){
     //   create the array of bubble objects
 	this.movers = [];   
     this.numMovers = 2;
-	this.createMovers(this.canvas,this.numMovers);
-	
+	//this.createMovers(this.canvas,this.numMovers);
+	this.movers.push(new Snake(5,30,30));
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
 
     //  Add event handlers to all tile objects
@@ -42,11 +42,11 @@ Game.prototype.run = function(){
 	
 		for(let i=0; i <this.movers.length;i++) {
 			for(let j=0; j<this.movers.length;j++) {
-				let forces = new JSVector(0,0);
+				//let forces = new JSVector(0,0);
 				if(i!=j) {
-					force = this.movers[j].gravity(this.movers[i])
+					//force = this.movers[j].gravity(this.movers[i])
 					//force.multiply(-1);
-					this.movers[i].applyForce(force);		
+					//this.movers[i].applyForce(force);		
 				}
 			}
 			

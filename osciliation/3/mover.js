@@ -13,40 +13,15 @@ function Mover(x, y, dx, dy, rad, clr,orbs){
 			this.mass=500;
 	}
 	this.clr = clr;
-	this.orbitAngle = Math.random() * Math.PI;
 	this.isOverlapping = false;
 	this.f = null;
-	this.orbs = orbs;
-	this.orbiters = [];
-	this.snakes = [];
-
-	for (let i = 0; i < orbs; i++) {
-
-		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
-	    let angleVel = 3 + (orbs * 0.1);
-		this.snakes.push( new Snake(this, 20, 20+this.rad));
-		//this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
-		//this.snakes.push( new Snake(this.snakes[i].loc, 20, 20));
-		
-	}
+	
 	
 }
 
   //  placing methods in the prototype (every Mover shares functions)
 
 Mover.prototype.run = function(){
-	for (let i = 0; i < this.orbiters.length; i++) {
-
-		let orb = this.orbiters[i];
-		orb.update();
-		orb.render();
-	}
-	for (let i = 0; i < this.snakes.length; i++) {
-
-		let snake = this.snakes[i];
-		snake.update();
-		snake.render();
-	}
 	this.velocity.add(this.acceleration);
     this.location.add(this.velocity);
 	this.checkOverlapping();
@@ -56,8 +31,8 @@ Mover.prototype.run = function(){
 	
 	this.acceleration.multiply(0);
 	//drag force
-	this.velocity.x += -0.00001 * 2 * 3.1415 * this.rad *  this.velocity.x
-	this.velocity.y += -0.00001 * 2 * 3.1415 * this.rad * this.velocity.y
+	//this.velocity.x += -0.00001 * 2 * 3.1415 * this.rad *  this.velocity.x
+	//this.velocity.y += -0.00001 * 2 * 3.1415 * this.rad * this.velocity.y
 	
 }
 
