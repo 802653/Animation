@@ -5,14 +5,15 @@
 function Snake(amount, snakeRad, radDistance){
 	this.segments = [];
 	this.radius = 15;
-	this.amount = 2;
+	this.amount = 15;
 	this.snakeRad = 150;
 	this.distance = radDistance;
-	this.loc = new JSVector(500,500);
-	this.velocity = new JSVector(0,0);
-	for (var i = 0; i < amount; i++) {
-		this.segments[i] = new JSVector(777,777);
-		console.log(this.segments[i]);
+	this.loc = new JSVector(250,250);
+	this.velocity = new JSVector(0.9,0.1);
+	this.acceleration = new JSVector(0.02,0.01);
+	for (var i = 1; i < this.amount+1; i++) {
+		this.segments[i] = new JSVector(200-(i*10),200-(i*10));
+		//console.log(this.segments[i]);
 	}
 	this.segments[0] = this.loc
 }
@@ -21,28 +22,35 @@ Snake.prototype.run = function(){
 	//this.movement = new JSVector.subGetNew(this.mover,this.loc);
 	//this.movement.normalize();
 	//this.movement.setMagnitude(0.4);
-	//if(Math.random() < 0.02) {
-		this.loc.add(this.velocity);
+	//if(Math.random() < 0.2) {
+		
 		
 		//this.movement.setMagnitude(this.distance);
 		//this.movement.setDirection(this.mover.getDirection());
 		//this.loc = new JSVector.addGetNew(this.movement,this.mover);
-		for (var i = 1; i < this.amount; i++) {
+		for (var i = 1; i < this.amount+1; i++) {
 
 				//console.log(this.segments[i]);
 				let movement = new JSVector.subGetNew(this.segments[i-1],this.segments[i]);
 				
-				movement.setMagnitude(4);
-				//this.movement.setDirection(this.velocity.getDirection());
-				//this.segments[i] = JSVector.addGetNew(this.segments[i],movement);
-				//this.segments[i] = JSVector.subGetNew(movement,this.segments[i-1]); 
-				this.segments[i] = movement;
+				movement.setMagnitude(this.velocity.getMagnitude());
+				
+
+				//movement.setDirection(this.segments[i].angleBetween(this.segments[i-1]));
+				//movement.setDirection(this.velocity.getDirection());
+				this.segments[i].add(movement);
+				//his.segments[i] = JSVector.subGetNew(movement,this.segments[i-1]); 
+				//this.segments[i] = JSVector.addGetNew(this.segments[i-1],movement);
+				//console.log(this.segments[i].distance(this.segments[i-1]));
 				//console.log(this.segments[1]);
 			
 			
 		}
+	this.loc.add(this.velocity);
+	this.velocity.add(this.acceleration);
 	//}
 	this.render();
+	//this.render();
 
 	this.checkEdges();
 }
@@ -59,8 +67,9 @@ Snake.prototype.render = function(){
 	for (var i = 0; i < this.amount; i++) {
 		ctx.beginPath();
 		
-		ctx.arc(this.segments[i].x, this.segments[i].y, this.radius-(3*i), Math.PI *2, 0, false);
-		//ctx.lineTo(0,0);
+		ctx.arc(this.segments[i].x, this.segments[i].y, this.radius-i, Math.PI *2, 0, false);
+		//ctx.arc(100, 100, 50, 0, 2 * Math.PI, false);
+		//ctx.lineTo(this.segments[i].x,this.segments[i].y);
 		ctx.stroke();
 
 
