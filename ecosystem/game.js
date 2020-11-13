@@ -12,8 +12,8 @@ function Game(){
     //   create the array of bubble objects
 	this.movers = [];   
     this.numMovers = 2;
-	this.createMovers(this.canvas,this.numMovers);
-	//this.movers.push(new Snake(5,30,30));
+	//this.createMovers(this.canvas,this.numMovers);
+	this.movers.push(new Snake(25,5,5));
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
 
     //  Add event handlers to all tile objects

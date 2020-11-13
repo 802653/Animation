@@ -4,15 +4,18 @@
 
 function Snake(amount, snakeRad, radDistance){
 	this.segments = [];
-	this.radius = 15;
-	this.amount = 15;
-	this.snakeRad = 150;
+	this.radius = snakeRad;
+	this.amount = amount;
+	this.snakeRad = radDistance;
 	this.distance = radDistance;
 	this.loc = new JSVector(250,250);
-	this.velocity = new JSVector(0.9,0.1);
-	this.acceleration = new JSVector(0.02,0.01);
+	this.velocity = new JSVector(0.4,0.04);
+	this.acceleration = new JSVector(0.00,0.00);
+	this.jerk = new JSVector(-0.000001,0.0000001);
+	//this.crackle = new JSVector(0.0000001,0.00000001);
+	//this.pop = new JSVector(-0.0000001,-0.00000001);
 	for (var i = 1; i < this.amount+1; i++) {
-		this.segments[i] = new JSVector(200-(i*10),200-(i*10));
+		this.segments[i] = new JSVector(0,0);
 		//console.log(this.segments[i]);
 	}
 	this.segments[0] = this.loc
@@ -31,16 +34,20 @@ Snake.prototype.run = function(){
 		for (var i = 1; i < this.amount+1; i++) {
 
 				//console.log(this.segments[i]);
-				let movement = new JSVector.subGetNew(this.segments[i-1],this.segments[i]);
+
+				let x = 15 * Math.cos(i * 40 + Math.PI * 2 * game.frameCount / 20);
+				let movement = new JSVector.subGetNew(this.segments[i],this.segments[i-1]);
 				
-				movement.setMagnitude(this.velocity.getMagnitude());
 				
 
+				movement.setMagnitude(this.distance/2);
+				
+				
 				//movement.setDirection(this.segments[i].angleBetween(this.segments[i-1]));
 				//movement.setDirection(this.velocity.getDirection());
-				this.segments[i].add(movement);
+				//this.segments[i].add(movement);
 				//his.segments[i] = JSVector.subGetNew(movement,this.segments[i-1]); 
-				//this.segments[i] = JSVector.addGetNew(this.segments[i-1],movement);
+				this.segments[i] = JSVector.addGetNew(this.segments[i-1],movement);
 				//console.log(this.segments[i].distance(this.segments[i-1]));
 				//console.log(this.segments[1]);
 			
@@ -48,6 +55,9 @@ Snake.prototype.run = function(){
 		}
 	this.loc.add(this.velocity);
 	this.velocity.add(this.acceleration);
+	//this.acceleration.add(this.jerk);
+	//this.jerk.add(this.crackle);
+	//this.crackle.add(this.pop);
 	//}
 	this.render();
 	//this.render();
@@ -67,7 +77,7 @@ Snake.prototype.render = function(){
 	for (var i = 0; i < this.amount; i++) {
 		ctx.beginPath();
 		
-		ctx.arc(this.segments[i].x, this.segments[i].y, this.radius-i, Math.PI *2, 0, false);
+		ctx.arc(this.segments[i].x, this.segments[i].y, this.radius-(i/6), Math.PI *2, 0, false);
 		//ctx.arc(100, 100, 50, 0, 2 * Math.PI, false);
 		//ctx.lineTo(this.segments[i].x,this.segments[i].y);
 		ctx.stroke();
@@ -77,11 +87,22 @@ Snake.prototype.render = function(){
 
 		
 	}
+	if(Math.random() < 0.01) {
+		this.acceleration.x = Math.random()*0.01-0.005;
+		this.acceleration.y = Math.random()*0.01-0.005;	
+	}
 	//
 	ctx.beginPath();
-    ctx.arc(this.loc.x, this.loc.y, this.radius, Math.PI *2, 0, false);
+	ctx.save();
+	ctx.beginPath();
+	ctx.translate(this.loc.x,this.loc.y);
+	ctx.rotate(this.velocity.getDirection());
+	ctx.lineWidth = 20;
+    	ctx.rect(0, 5, 30, -5);
+	ctx.fill();
 	//ctx.lineTo(0,0);
 	ctx.stroke();
+ctx.restore();
 	
 	//console.log('head at' + this.loc.x + ' ' + this.loc.y);
 	//console.log('segment at' + this.segments[0].x + ' ' + this.segments[0].y);
