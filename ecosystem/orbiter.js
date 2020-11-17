@@ -4,7 +4,7 @@ function Orbiter(mover, orbiterRad, orbitRad, angle, angleVel, clr){
 	this.radius = orbiterRad;
 	this.rotator = new JSVector(0,0);
 	this.rotator.setMagnitude(orbitRad);
-
+	this.particles = [];
 	this.rotator.setDirection(angle);
 	
 	this.loc = new JSVector.addGetNew(this.mover,this.rotator);
@@ -14,9 +14,25 @@ function Orbiter(mover, orbiterRad, orbitRad, angle, angleVel, clr){
 }
 
 Orbiter.prototype.update = function(){
+	let vel = new JSVector(0.5,0.5);
+	vel.setDirection(Math.random()*360);
+	if(Math.random() < 0.01) {
+		this.particles.push(new Particle(this.loc.x,this.loc.y,vel.x,vel.y,200));
+	}
 	this.rotator.rotate(this.angleVel);
 		//console.log(this.rotator);
 	this.loc = JSVector.addGetNew(this.mover,this.rotator);
+	for(var i = 0; i < this.particles.length; i++) {
+		if(this.particles.lifeTime < 0) {
+			this.particles.splice(i);
+		}
+		
+	}
+	for(var i = 0; i < this.particles.length; i++) {
+		
+		this.particles[i].run();
+		
+	}
 	//console.log(this.loc);
 
 	//console.log(this.mover);

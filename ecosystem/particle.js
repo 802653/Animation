@@ -1,14 +1,14 @@
-function Particle(ax,ay){
-	this.location = new JSVector(250,250);
-	this.velocity = new JSVector(0.1,0.1);
-	this.acceleration = new JSVector(ax,ay);
-	this.lifeTime = 1000;
-	this.initialLifeTime=1000;
+function Particle(x,y,ax,ay,l){
+	this.location = new JSVector(x,y);
+	this.velocity = new JSVector(ax,ay);
+	this.acceleration = new JSVector(0.01,0.01);
+	this.lifeTime = l;
+	this.initialLifeTime=l;
 	
 }
 
 Particle.prototype.run = function(){
-	this.velocity.add(this.acceleration);
+	//this.velocity.add(this.acceleration);
 	this.location.add(this.velocity);
 	this.lifeTime= this.lifeTime - 1;
 	this.draw();

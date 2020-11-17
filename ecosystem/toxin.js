@@ -8,6 +8,7 @@ function Toxin(x, y, dx, dy, rad,orbs){
 	this.orbitAngle = Math.random() * Math.PI;
 	this.orbs = orbs;
 	this.orbiters = [];
+	
 	for (let i = 0; i < orbs; i++) {
 
 		let a = i * (Math.PI*2) * orbs + this.orbitAngle;
@@ -20,6 +21,7 @@ function Toxin(x, y, dx, dy, rad,orbs){
   //  placing methods in the prototype (every Toxin shares functions)
 
 Toxin.prototype.run = function(){
+
 	for (let i = 0; i < this.orbiters.length; i++) {
 
 		let orb = this.orbiters[i];
@@ -33,6 +35,7 @@ Toxin.prototype.run = function(){
 	this.checkEdges();
 	
 	this.acceleration.multiply(0);
+
 	//drag force
 	//this.velocity.x += -0.00001 * 2 * 3.1415 * this.rad *  this.velocity.x
 	//this.velocity.y += -0.00001 * 2 * 3.1415 * this.rad * this.velocity.y
