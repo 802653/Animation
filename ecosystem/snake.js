@@ -71,7 +71,7 @@ Snake.prototype.render = function(){
 	
 	ctx.strokeStyle = this.clr;
 	ctx.fillStyle = this.clr;
-	ctx.strokeStyle = "rgba(255,155,155,255)"
+	ctx.strokeStyle = "rgba(0,200,255,255)"
 	ctx.lineWidth = 2;
 	//
 	for (var i = 0; i < this.amount; i++) {

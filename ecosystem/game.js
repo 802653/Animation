@@ -10,10 +10,23 @@ function Game(){
     this.ctx = this.canvas.getContext('2d'); // This is the context
 
     //   create the array of bubble objects
-	this.movers = [];   
+	this.movers = [];  
+	this.frameCount = 0;
     this.numMovers = 2;
+	this.particleSystems = []
 	//this.createMovers(this.canvas,this.numMovers);
-	this.movers.push(new Snake(25,5,5));
+	this.movers.push(new Snake(25,5,20));
+	this.movers.push(new Snake(9,5,20));
+	this.movers.push(new Snake(14,5,20));
+	this.movers.push(new Snake(12,5,20));
+	this.movers.push(new Snake(8,5,20));
+	this.movers.push(new Snake(8,5,20));
+	this.movers.push(new Toxin(200,200,0.3,0.3,30,5));
+	this.movers.push(new Toxin(300,200,-0.3,0.3,50,8));
+	this.movers.push(new Toxin(100,300,0.3,-0.3,40,2));
+	this.movers.push(new Toxin(200,500,0.3,-0.3,20,4));
+	//this.particles.push(new Particle());
+	//this.particleSystems.push(new ParticleSystem());
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
 
     //  Add event handlers to all tile objects
@@ -39,25 +52,39 @@ function Game(){
 // function to run the game each animation cycle
 Game.prototype.run = function(){
   if(!this.gamePaused){
-	
-		for(let i=0; i <this.movers.length;i++) {
-			for(let j=0; j<this.movers.length;j++) {
+		this.frameCount++;
+		//for(let i=0; i <this.movers.length;i++) {
+			//for(let j=0; j<this.movers.length;j++) {
 				//let forces = new JSVector(0,0);
-				if(i!=j) {
+				//if(i!=j) {
 					//force = this.movers[j].gravity(this.movers[i])
 					//force.multiply(-1);
 					//this.movers[i].applyForce(force);		
-				}
-			}
+				//}
+			//}
 			
 			
-		}
+		
 		for(let i=0; i<this.movers.length;i++) {
 			if (this.movers[i]!= null) {
 					this.movers[i].run();
 			}
 			
 		}
+		for(let i=0; i<this.particleSystems.length;i++) {
+			if (this.particleSystems[i].lifeTime < 0) {
+					//this.particleSystems[i].prepareRemoval();
+					this.particleSystems.splice(i);
+			}
+			
+		}
+		for(let i=0; i<this.particleSystems.length;i++) {
+			if (this.particleSystems[i]!= null) {
+					this.particleSystems[i].run();
+			}
+			
+		}
+
 		
 	}
 }
