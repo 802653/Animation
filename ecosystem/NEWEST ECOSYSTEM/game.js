@@ -24,22 +24,22 @@ function Game(){
 	this.objects = [];  
 	this.objects.push(new Snake(25,5,20));
 	this.objects.push(new Flock());
-	this.objects[1].addV(new Vehicle(510, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(520, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(530, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(490, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(480, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(470, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(300, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(320, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(340, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(360, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(380, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(400, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(420, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(440, 500, 0, 0, 5));
 	this.objects[1].addV(new Vehicle(460, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(450, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(540, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(550, 500, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(480, 500, 0, 0, 5));
 	this.objects[1].addV(new Vehicle(500, 510, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 520, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 530, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 490, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 480, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 470, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(520, 520, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(540, 530, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(560, 490, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(580, 480, 0, 0, 5));
+	this.objects[1].addV(new Vehicle(600, 470, 0, 0, 5));
 } //++++++++++++++++++++++  end Game
 
 

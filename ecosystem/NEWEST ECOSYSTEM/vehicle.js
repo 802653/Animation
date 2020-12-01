@@ -22,7 +22,15 @@ function Vehicle(x, y, dx, dy, rad){
 Vehicle.prototype.run = function(Vehicles){
 	
 	
+	this.maxForce =document.getElementById("slider3").value;
+	
+	this.maxSpeed =document.getElementById("slider4").value;
+	
 	this.flock(Vehicles);
+	
+
+	
+
 	
 	this.velocity.add(this.acceleration);
     
@@ -31,6 +39,10 @@ Vehicle.prototype.run = function(Vehicles){
 	this.location.add(this.velocity);
 	
 	//this.update();
+	
+	this.acceleration.multiply(0);
+	
+	this.checkEdges();
 	
 	this.render();
 	//this.acceleration.multiply(0);
@@ -54,7 +66,7 @@ Vehicle.prototype.seek = function(target) {
 }
 
 Vehicle.prototype.seperate = function(Vehicles) {
-	let desiredSeperation = 5.0;
+	let desiredSeperation = document.getElementById("slider2").value;
 	let steer = new JSVector(0,0);
 	let count = 0;
 	
@@ -87,7 +99,7 @@ Vehicle.prototype.seperate = function(Vehicles) {
 }
 
 Vehicle.prototype.cohesion = function(Vehicles) {
-	let neighborDistance = 25;
+	let neighborDistance = document.getElementById("slider1").value;
 	let sum = new JSVector(0,0);
 	let count = 0;
 	for( let i = 0; i < Vehicles.length;i++) {
@@ -109,7 +121,7 @@ Vehicle.prototype.cohesion = function(Vehicles) {
 }
 
 Vehicle.prototype.align = function(Vehicles) {
-	let neighborDistance = 25;
+	let neighborDistance = document.getElementById("slider1").value;
 	let sum = new JSVector(0,0);
 	let count = 0;
 	for(let i = 0; i < Vehicles.length;i++) {
@@ -172,8 +184,8 @@ Vehicle.prototype.render = function(){
 // When a Vehicle hits an edge of the canvas, it wraps around to the opposite edge.
 Vehicle.prototype.checkEdges = function(){
     let canvas = game.canvas;
-    if(this.location.x > canvas.width)  this.velocity.x = this.velocity.x * -1; // wrap around from right to left
-    if(this.location.x < 0)  this.velocity.x = this.velocity.x * -1; // wrap around from left to right
-    if(this.location.y > canvas.height)  this.velocity.y = this.velocity.y * -1; // wrap around from bottom to top
-    if(this.location.y < 0)  this.velocity.y = this.velocity.y * -1; // wrap around from top to bottom
+    if(this.location.x > canvas.width)  this.location.x = 0; // wrap around from right to left
+    if(this.location.x < 0)  this.location.x = canvas.width; // wrap around from left to right
+    if(this.location.y > canvas.height)  this.location.y = 0; // wrap around from bottom to top
+    if(this.location.y < 0)  this.location.y = canvas.height; // wrap around from top to bottom
   }
