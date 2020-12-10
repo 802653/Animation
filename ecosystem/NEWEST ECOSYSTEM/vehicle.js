@@ -2,9 +2,12 @@
 
 //  Vehicle constructor function +++++++++++++++++++++++++++++
 
-function Vehicle(x, y, dx, dy, rad){
+function Vehicle(x, y, dx, dy, rad, amount, snakeRad, radDistance){
+	this.segments = [];
+	this.amount = amount;
+	this.distance = radDistance;
 	this.location = new JSVector(x,y);
-    this.velocity = new JSVector(0,0);
+    this.velocity = new JSVector(0.2,0.2);
 	this.acceleration = new JSVector(0,0);
 	this.rad = rad;
 	this.clr = "rgba(255,155,155,255)";
@@ -12,6 +15,12 @@ function Vehicle(x, y, dx, dy, rad){
 	this.r = 5.0;
 	this.maxForce =0.01;
 	this.maxSpeed =2;
+	
+	for (var i = 1; i < this.amount+1; i++) {
+		this.segments[i] = new JSVector(110,0);
+		//console.log(this.segments[i]);
+	}
+	this.segments[0] = this.location
 	//this.seek( new JSVector(400,400) );
 	
 	
@@ -28,9 +37,28 @@ Vehicle.prototype.run = function(Vehicles){
 	
 	this.flock(Vehicles);
 	
+	for (var i = 1; i < this.segments.length; i++) {
 
-	
+				//console.log(this.segments[i]);
 
+		//let x = 15 * Math.cos(i * 40 + Math.PI * 2 * game.frameCount / 20);
+		let movement = new JSVector.subGetNew(this.segments[i],this.segments[i-1]);
+				
+				
+
+		movement.setMagnitude(this.distance/2);
+				
+				
+				//movement.setDirection(this.segments[i].angleBetween(this.segments[i-1]));
+				//movement.setDirection(this.velocity.getDirection());
+				//this.segments[i].add(movement);
+				//his.segments[i] = JSVector.subGetNew(movement,this.segments[i-1]); 
+		this.segments[i] = JSVector.addGetNew(this.segments[i-1],movement);
+				//console.log(this.segments[i].distance(this.segments[i-1]));
+				//console.log(this.segments[1]);		
+	}
+		
+	//this.think();
 	
 	this.velocity.add(this.acceleration);
     
@@ -173,8 +201,24 @@ Vehicle.prototype.render = function(){
 
     ctx.fillStyle = this.clr;
     ctx.beginPath();
+	
 	ctx.arc(this.location.x, this.location.y, this.rad, 0, 2 * Math.PI);
+	
+	
 	ctx.stroke();
+	for (var i = 0; i < this.amount; i++) {
+		ctx.beginPath();
+		
+		ctx.arc(this.segments[i].x, this.segments[i].y, this.radius-(i/6), Math.PI *2, 0, false);
+		//ctx.arc(100, 100, 50, 0, 2 * Math.PI, false);
+		//ctx.lineTo(this.segments[i].x,this.segments[i].y);
+		ctx.stroke();
+
+
+		//console.log('help');
+
+		
+	}
 
  }
 

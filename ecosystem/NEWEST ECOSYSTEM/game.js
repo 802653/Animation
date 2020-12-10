@@ -22,24 +22,24 @@ function Game(){
         slider.addEventListener('input',updateSlider);  // update display value when it changes
     }
 	this.objects = [];  
-	this.objects.push(new Snake(25,5,20));
+	//this.objects.push(new Snake(25,5,20));
 	this.objects.push(new Flock());
-	this.objects[1].addV(new Vehicle(300, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(320, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(340, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(360, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(380, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(400, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(420, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(440, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(460, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(480, 500, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(500, 510, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(520, 520, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(540, 530, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(560, 490, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(580, 480, 0, 0, 5));
-	this.objects[1].addV(new Vehicle(600, 470, 0, 0, 5));
+	this.objects[0].addV(new Vehicle(300, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(320, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(340, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(360, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(380, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(400, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(420, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(440, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(460, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(480, 500, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(500, 510, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(520, 520, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(540, 530, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(560, 490, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(580, 480, 0, 0, 5, 5,10));
+	this.objects[0].addV(new Vehicle(600, 470, 0, 0, 5, 5,10));
 } //++++++++++++++++++++++  end Game
 
 

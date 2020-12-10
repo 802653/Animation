@@ -53,6 +53,8 @@ Snake.prototype.run = function(){
 			
 			
 		}
+		
+	//this.think();
 	this.loc.add(this.velocity);
 	this.velocity.add(this.acceleration);
 	//this.acceleration.add(this.jerk);
@@ -64,6 +66,29 @@ Snake.prototype.run = function(){
 
 	this.checkEdges();
 }
+
+Snake.prototype.seek = function(target) {
+	desired = new JSVector.subGetNew(target,this.location);
+	//desired.normalize();
+	desired.setMagnitude(8);
+	steer = new JSVector.subGetNew(desired, this.velocity);
+	steer.limit(this.maxForce);
+	return steer;
+}
+
+
+Snake.prototype.think = function() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
 
 Snake.prototype.render = function(){
     let ctx = game.ctx;
@@ -102,7 +127,7 @@ Snake.prototype.render = function(){
 	ctx.fill();
 	//ctx.lineTo(0,0);
 	ctx.stroke();
-ctx.restore();
+	ctx.restore();
 	
 	//console.log('head at' + this.loc.x + ' ' + this.loc.y);
 	//console.log('segment at' + this.segments[0].x + ' ' + this.segments[0].y);

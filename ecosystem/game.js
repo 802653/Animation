@@ -27,10 +27,10 @@ function Game(){
 	//this.movers.push(new Snake(12,5,20));
 	//this.movers.push(new Snake(8,5,20));
 	//this.movers.push(new Snake(8,5,20));
-	//this.movers.push(new Toxin(200,200,0.3,0.3,30,5));
-	//this.movers.push(new Toxin(300,200,-0.3,0.3,50,8));
-	//this.movers.push(new Toxin(100,300,0.3,-0.3,40,2));
-	//this.movers.push(new Toxin(200,500,0.3,-0.3,20,4));
+	this.movers.push(new Toxin(200,200,0.3,0.3,10,5));
+	this.movers.push(new Toxin(300,200,-0.3,0.3,5,8));
+	this.movers.push(new Toxin(100,300,0.3,-0.3,18,2));
+	this.movers.push(new Toxin(200,500,0.3,-0.3,20,4));
 	//this.particles.push(new Particle());
 	//this.particleSystems.push(new ParticleSystem());
 	//this.movers.push(new Bubble(this.canvas.width/2, this.canvas.height/2, 0, 0, 130, clr));
