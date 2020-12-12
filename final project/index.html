@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slider template</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="mystyles.css">
+        <script src = "jsvector.js"></script>
+        <script src = "game.js"></script>
+        <script src = "main.js"></script>
+		<script src = "mace.js"></script>
+		<script src="flame.js"></script>
+		<script src="beatle.js"></script>
+		<script src="gamearea.js"></script>
+		<script src="flock.js"></script>
+		<script src="vehicle.js"></script>
+		<script src="jsvector.js"></script>
+		<script src="vehicle.js"></script>
+		<script src="orbiter.js"></script>
+		<script src="toxin.js"></script>
+		<script src="particle.js"></script>
+		<script src="particleSystem.js"></script>
+		<script src="snake.js"></script>
+		<script src="mover.js"></script>
+
+    </head>
+    <body>
+        <div id="wrapperDiv">
+            <div id="sliderDiv">
+                <div class = "slider">
+                    <label for="slider1">Neighbor Distance</label>
+                    <input type="range" id="slider1" name="slider1"
+                            value = "50" min="0" max="100" step = "1"/>
+                    <p id="s1value">50</p>
+                </div>
+                <div class = "slider">
+                    <label for="slider2">Desired Seperation</label>
+                    <input type="range" id="slider2" name="slider2"
+                            value = "50" min="0" max="100" step = "1"/>
+                    <p id="s2value">50</p>
+                </div>
+                <div class = "slider">
+                    <label for="slider3">Max Force</label>
+                    <input type="range" id="slider3" name="slider3"
+                            value = "0.05" min="0" max="5" step = "0.05"/>
+                    <p id="s3value">0.05</p>
+                </div>
+                <div class = "slider">
+                    <label for="slider4">Max Speed</label>
+                    <input type="range" id="slider4" name="slider4"
+                        value = "1" min="0" max="10" step = "0.1"/>
+                    <p id="s4value">1</p>
+                </div>
+                <div class = "slider">
+                    <label for="slider5">Slider 5</label>
+                    <input type="range" id="slider5" name="slider5"
+                        value = "50" min="0" max="100" step = "1"/>
+                    <p id="s5value">50</p>
+                </div>
+                <div class = "slider">
+                    <label for="slider6">Slider 6</label>
+                    <input type="range" id="slider6" name="slider6"
+                        value = "50" min="0" max="100" step = "1"/>
+                    <p id="s6value">50</p>
+                </div>
+            </div>  <!-- sliderdiv -->
+            <div id="canvasDiv">
+                <canvas id="canvas" width = "1920" height="1080"></canvas>
+            </div>  <!-- canvasDiv -->
+
+        </div>  <!-- wrapperDiv -->
+    </body>
+</html>
