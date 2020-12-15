@@ -17,6 +17,7 @@ function Toxin(x, y, dx, dy, rad,orbs){
 		this.orbiters.push( new Orbiter(this.location, this.rad/4, this.rad*2, a, angleVel, this.clr));
 		
 	}
+	this.baked = Math.random()+0.2;
 }
 
   //  placing methods in the prototype (every Toxin shares functions)
@@ -40,7 +41,7 @@ Toxin.prototype.run = function(){
 						let tard = new JSVector.subGetNew(list[i].loc,this.location);
 						tard.limit(5);
 						let steer = new JSVector.subGetNew(tard,this.velocity);
-						steer.limit(0.2);
+						steer.limit(this.baked);
 						this.acceleration.add(steer);
 					}
 						
@@ -59,8 +60,8 @@ Toxin.prototype.run = function(){
 		this.acceleration.x = Math.random()*0.01-0.005;
 		this.acceleration.y = Math.random()*0.01-0.005;	
 	}
-	this.acceleration.limit(0.3);
-	this.velocity.limit(2);
+	this.acceleration.limit(this.baked);
+	this.velocity.limit(this.baked*2);
 	this.velocity.add(this.acceleration);
     this.location.add(this.velocity);
 	this.update();
